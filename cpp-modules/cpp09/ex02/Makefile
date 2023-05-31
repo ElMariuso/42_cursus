@@ -1,0 +1,36 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: root <root@student.42.fr>                  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/05/27 16:10:58 by root              #+#    #+#              #
+#    Updated: 2023/05/27 16:11:33 by root             ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = PmergeMe
+SRCS = main.cpp \
+		PmergeMe.cpp
+CPP = c++
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
+OBJS = $(SRCS:%.cpp=%.o)
+
+all: $(NAME)
+
+$(NAME) : $(OBJS)
+	$(CPP) $(CPP_FLAGS) $(OBJS) -o $(NAME)
+
+%.o: %.cpp
+	$(CPP) -c $(CPP_FLAGS) $?
+
+clean:
+	rm -rf $(OBJS)
+
+fclean : clean
+	rm -rf $(NAME)
+
+re : fclean all
+
+.PHONY: fclean clean re all
